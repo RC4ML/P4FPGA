@@ -9,7 +9,7 @@ $ apt install build-essential linux-headers-generic
 
 2. Build kernel module
 ```
-$ cd dma/driver/driver
+$ cd driver
 $ make
 ```
 
@@ -48,41 +48,4 @@ hugetlbfs /media/huge hugetlbfs mode=1770,gid=1001 0 0
 6. Add the following line to `/etc/security/limits.conf` to configure the amount of memory a user can lock, so an application can't crash your operating system by locking all the memory. 
 ```
 @hugetlbfs	hard	memlock		1048576
-```
-
-## Build Example Application
-1. Install prerequisites, e.g. on Ubuntu install the following packages:
-```
-$ apt install libboost-program-options-dev cmake
-```
-2. Compile example application
-```
-$ cd dma-driver/sw
-$ mkdir build && cd build
-$ cmake ../src
-$ make
-```
-
-## Run Example Application/Benchmark
-1. Load kernel module if not loaded yet.
-```
-$ cd dma-driver/driver
-$ insmod xdma_driver.ko
-```
-2. Run the Application (requires root permission)
-```
-$ cd dma-driver/sw/build
-$ ./dma-example
-```
-
-## Read FPGA Debug Registers
-1. Load kernel module if not loaded yet.
-```
-$ cd dma-driver/driver
-$ insmod xdma_driver.ko
-```
-2. Run the Application (requires root permission)
-```
-$ cd dma-driver/sw/build
-$ ./debug
 ```
